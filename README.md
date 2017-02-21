@@ -1,6 +1,8 @@
 # offline-first-example
 Basic offline first example intended for use on a static web app on iOS that includes HTML5 video.
 
+[Demo](https://persianturtle.github.io/offline-first-example/dist): After first page load, try refreshing the page without a network connection on any device including iPhone/iPad/iOS Safari/Chrome.
+
 This example uses `Webpack` & `Webpack Offline Plugin` which uses `Service Worker` and `Application Cache` as a fallback.
 
 The video is loaded via the (polyfilled) `Fetch API` as an [Array Buffer](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer) because storing blobs in IndexedDB is not supported in iOS. Since we can't assign video sources to Array Buffers, [we first convert it to blob.](http://stackoverflow.com/questions/40393488/mobile-safari-10-indexeddb-blobs/40625816#40625816)
