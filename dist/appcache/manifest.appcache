@@ -1,0 +1,10 @@
+CACHE MANIFEST
+#ver:2/21/2017, 4:06:14 PM
+#plugin:4.6.1
+
+CACHE:
+/offline-first-example/dist/096f222edd840926f4f4.bundle.js
+/offline-first-example/dist/
+
+NETWORK:
+*
