@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "npm run lint && rm -rf dist && webpack && rm dist/appcache/manifest.html && cp -r src/video dist",
+    "build": "npm run lint && rm -rf dist && webpack -p && rm dist/appcache/manifest.html && cp -r src/video dist",
     "lint": "standard src"
   },
   "repository": {

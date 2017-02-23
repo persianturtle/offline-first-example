@@ -5,19 +5,27 @@ import OfflinePlugin from 'offline-plugin/runtime'
 
 OfflinePlugin.install()
 
-const video = document.querySelector('video')
-
-fetch('/offline-first-example/dist/video/video.mp4')
-.then(response => response.arrayBuffer())
+idb.get('video')
 .then(buffer => {
-  idb.set('video', buffer).then(setVideoSourceFromBuffer(video, buffer))
-})
-.catch(error => {
-  idb.get('video').then(buffer => setVideoSourceFromBuffer(video, buffer))
-  console.log('Oh no!', error)
+  if (!buffer) {
+    return fetchVideo()
+  }
+
+  setVideoSourceFromBuffer(buffer)
 })
 
-function setVideoSourceFromBuffer(video, buffer) {
+function fetchVideo() {
+  fetch('/offline-first-example/dist/video/video.mp4')
+  .then(response => response.arrayBuffer())
+  .then(buffer => {
+    idb.set('video', buffer).then(() => {
+      setVideoSourceFromBuffer(buffer)
+    })
+  })
+}
+
+function setVideoSourceFromBuffer(buffer) {
+  const video = document.querySelector('video')
   let blob = new Blob([buffer], { type: 'video/mp4'})
-  video.src = window.URL.createObjectURL(blob)
+  video.src = URL.createObjectURL(blob)
 }
